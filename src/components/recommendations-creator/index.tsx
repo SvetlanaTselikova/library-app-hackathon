@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
+import styles from "./index.module.sass";
+import magic from "../../images/magic.png";
 
 import { ModalContent } from "./modal-content";
 
@@ -13,7 +15,14 @@ export const RecommendationsCreator = (props: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
     <React.Fragment>
-      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+      <Button
+        onClick={() => setIsOpen(true)}
+        className={styles.creatorBtn}
+        type="link"
+      >
+        Подобрать персональные рекомендации
+        <img src={magic} className={styles.magicImg} />
+      </Button>
       {isOpen ? (
         <ModalContent
           isOpen={isOpen}

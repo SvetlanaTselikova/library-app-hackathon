@@ -19,7 +19,7 @@ type Props = {
 export const ModalContent = (props: Props) => {
   const { isOpen, onClose } = props;
   const { isLoadingGenres, genresData } = props;
-  const [mode, setMode] = useState<ModalMode>(ModalMode.steps);
+  const [mode, setMode] = useState<ModalMode>(ModalMode.ask);
   return (
     <Modal visible={isOpen} footer={null} onCancel={onClose} closable>
       {mode === ModalMode.ask ? (

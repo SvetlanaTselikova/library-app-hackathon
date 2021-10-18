@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Button, Result, Space } from "antd";
+import styles from "./index.module.sass";
+import img from "../../images/reading.png";
 
 type Props = {
   onCancel: () => void;
@@ -21,7 +23,7 @@ export const AskBlock = (props: Props) => {
           </Button>
         </Space>
       }
-      icon={<span></span>}
+      icon={<img src={img} className={styles.askImg} />}
     />
   );
 };
