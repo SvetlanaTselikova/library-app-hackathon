@@ -24,7 +24,7 @@ function prepareTargetMock(bookIds: number[]) {
     };
     const book = {
       ...bookObj,
-      title: `${item} target book for`,
+      title: `${item} target book`,
     };
     books.push(book);
   });

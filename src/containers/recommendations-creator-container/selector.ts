@@ -1,6 +1,9 @@
 import { RootState } from "../../store/types";
 import { createSelector } from "reselect";
 import { GenresState } from "../../store/slices";
+import { BooksState } from "../../store/slices";
+import { FilteredBooksState } from "../../store/slices";
+import { IBook } from "../../types/common";
 
 const getGenresState = (state: RootState): GenresState => state.genres;
 
@@ -15,3 +18,24 @@ export const selectIsLoadingGenres = createSelector<
   GenresState,
   boolean
 >(getGenresState, (genresState): boolean => genresState.loading);
+
+const getFilteredBooksState = (state: RootState): FilteredBooksState =>
+  state.filteredBooks;
+
+export const selectFilteredBooksData = createSelector<
+  RootState,
+  FilteredBooksState,
+  IBook[]
+>(
+  getFilteredBooksState,
+  (filteredBooksState): IBook[] => filteredBooksState.filteredBooksData
+);
+
+export const selectIsFilteredBooksLoading = createSelector<
+  RootState,
+  FilteredBooksState,
+  boolean
+>(
+  getFilteredBooksState,
+  (filteredBooksState): boolean => filteredBooksState.loading
+);

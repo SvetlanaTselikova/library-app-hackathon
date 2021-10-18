@@ -19,6 +19,8 @@ export const StepsBlock = (props: Props) => {
     undefined
   );
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedBooks, setSelectedBooks] = useState<number[]>([]);
+
   const steps = [
     {
       title: "Тип",
@@ -58,6 +60,18 @@ export const StepsBlock = (props: Props) => {
   const prev = () => {
     setCurrentStep(currentStep - 1);
   };
+  const getIsNextDisabled = () => {
+    if (currentStep === 0 && !selectedType) {
+      return true;
+    }
+    if (currentStep === 1 && !selectedGenres.length) {
+      return true;
+    }
+    if (currentStep === 2 && !selectedBooks.length) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <React.Fragment>
@@ -79,6 +93,7 @@ export const StepsBlock = (props: Props) => {
           type="primary"
           onClick={() => next()}
           className={styles.stepBtnNext}
+          disabled={getIsNextDisabled()}
         >
           {currentStep === steps.length - 1
             ? "Подобрать рекомендации"

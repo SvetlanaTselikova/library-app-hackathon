@@ -5,3 +5,5 @@ export * from "./content-mode";
 export * from "./books";
 export * from "./target";
 export * from "./genres";
+export * from "./created-recommendations";
+export * from "./filtered-books";
