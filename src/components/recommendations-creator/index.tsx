@@ -3,13 +3,24 @@ import { Button, Modal } from "antd";
 
 import { ModalContent } from "./modal-content";
 
-export const RecommendationsCreator = () => {
+type Props = {
+  isLoadingGenres: boolean;
+  genresData: string[];
+};
+
+export const RecommendationsCreator = (props: Props) => {
+  const { isLoadingGenres, genresData } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
     <React.Fragment>
       <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       {isOpen ? (
-        <ModalContent isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalContent
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          genresData={genresData}
+          isLoadingGenres={isLoadingGenres}
+        />
       ) : null}
     </React.Fragment>
   );

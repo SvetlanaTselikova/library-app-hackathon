@@ -6,6 +6,7 @@ import {
   contentModeSlice,
   booksSlice,
   targetSlice,
+  genresSlice,
 } from "./slices";
 
 export default combineReducers({
@@ -15,4 +16,5 @@ export default combineReducers({
   contentMode: contentModeSlice.reducer,
   books: booksSlice.reducer,
   target: targetSlice.reducer,
+  genres: genresSlice.reducer,
 });

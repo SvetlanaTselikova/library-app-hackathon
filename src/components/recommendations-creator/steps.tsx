@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { Button, Steps, Typography } from "antd";
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import styles from "./index.module.sass";
 import { BookType } from "../../types/common";
 import { TypeStep } from "./type-step";
+import { GenresStep } from "./genres-step";
 
 const { Step } = Steps;
 
-export const StepsBlock = () => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+type Props = {
+  isLoadingGenres: boolean;
+  genresData: string[];
+};
+
+export const StepsBlock = (props: Props) => {
+  const { isLoadingGenres, genresData } = props;
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedType, setSelectedType] = useState<BookType | undefined>(
     undefined
   );
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const steps = [
     {
       title: "Тип",
@@ -25,7 +32,18 @@ export const StepsBlock = () => {
     },
     {
       title: "Жанры",
-      content: "Second-content",
+      content: (
+        <GenresStep
+          isLoadingGenres={isLoadingGenres}
+          genresData={genresData}
+          selectedGenres={selectedGenres}
+          onAdd={(value) => setSelectedGenres([...selectedGenres, value])}
+          onRemove={(value) =>
+            setSelectedGenres(selectedGenres.filter((item) => item !== value))
+          }
+        />
+      ),
+      header: "Выберите интересные жанры",
     },
     {
       title: "Книги",

@@ -12,10 +12,13 @@ enum ModalMode {
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  isLoadingGenres: boolean;
+  genresData: string[];
 };
 
 export const ModalContent = (props: Props) => {
   const { isOpen, onClose } = props;
+  const { isLoadingGenres, genresData } = props;
   const [mode, setMode] = useState<ModalMode>(ModalMode.steps);
   return (
     <Modal visible={isOpen} footer={null} onCancel={onClose} closable>
@@ -25,7 +28,7 @@ export const ModalContent = (props: Props) => {
           onNext={() => setMode(ModalMode.steps)}
         />
       ) : (
-        <StepsBlock />
+        <StepsBlock genresData={genresData} isLoadingGenres={isLoadingGenres} />
       )}
     </Modal>
   );
