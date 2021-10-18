@@ -14,3 +14,8 @@ export enum ContentMode {
   recommendations = "recommendations",
   populdar = "popular",
 }
+
+export enum BookType {
+  classic = "classic",
+  modern = "modern",
+}

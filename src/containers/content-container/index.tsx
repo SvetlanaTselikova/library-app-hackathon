@@ -11,6 +11,7 @@ import { fetchRecommendationsRequest } from "../../store/slices";
 import { NO_HISTORY } from "../../constants";
 import { Skeleton } from "antd";
 import { TargetContainer } from "../target-container";
+import { RecommendationsCreatorContainer } from "../recommendations-creator-container";
 
 export const ContentContainer = () => {
   const contentMode = useSelector(selectContentMode);
@@ -32,7 +33,12 @@ export const ContentContainer = () => {
       );
     }
     if (contentMode === ContentMode.populdar) {
-      return <PopularContainer />;
+      return (
+        <React.Fragment>
+          <RecommendationsCreatorContainer />
+          <PopularContainer />
+        </React.Fragment>
+      );
     }
     if (contentMode === ContentMode.recommendations) {
       return (
