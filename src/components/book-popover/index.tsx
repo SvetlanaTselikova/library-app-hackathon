@@ -6,14 +6,14 @@ import styles from "./index.module.sass";
 
 type Props = {
   book: IBook;
-  background: string;
+  color: string;
 };
 
 export const BookPopover: React.FC<Props> = (props: Props) => {
-  const { book, background } = props;
+  const { book, color } = props;
   return (
     <div className={styles.wrapper}>
-      <Book book={book} background={background} />
+      <Book book={book} color={color} />
       <div>
         <div className={styles.annotation}>{book.annotation}</div>
         <div className={styles.age}>{book.year}</div>

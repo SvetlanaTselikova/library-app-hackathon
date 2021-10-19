@@ -19,7 +19,7 @@ function preparePopularMock() {
       author: `${inx} author`,
       year: 123,
       annotation: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.`,
-      age_resctriction: 16,
+      age_resctriction: Math.random() > 0.5 ? 16 : undefined,
       volume: 123,
       rubric: "rubric",
       keyword: "keyword",

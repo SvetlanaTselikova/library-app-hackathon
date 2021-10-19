@@ -14,3 +14,9 @@ export const BACKGROUND_MAP = {
   [COLORS.green]:
     "linear-gradient(90deg,#13c2c2 -.01%,#e6fffb 1.99%,#b5f5ec 3%,#36cfc9 5%,transparent 6%,#b5f5ec 7%,#87e8de 100.01%)",
 };
+
+export const BAGES_COLOR_MAP = {
+  [COLORS.red]: "#ff7875",
+  [COLORS.orange]: "#ff9c6e",
+  [COLORS.green]: "#36cfc9",
+};

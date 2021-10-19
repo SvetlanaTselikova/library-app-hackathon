@@ -4,7 +4,7 @@ export interface IBook {
   author: string;
   year: number;
   annotation: string;
-  age_resctriction: number;
+  age_resctriction: number | undefined;
   volume: number;
   rubric: string;
   keyword: string;
