@@ -2,7 +2,10 @@ import { RootState } from "../../store/types";
 import { createSelector } from "reselect";
 import { GenresState } from "../../store/slices";
 import { BooksState } from "../../store/slices";
-import { FilteredBooksState } from "../../store/slices";
+import {
+  FilteredBooksState,
+  CreatedRecommendationsState,
+} from "../../store/slices";
 import { IBook } from "../../types/common";
 
 const getGenresState = (state: RootState): GenresState => state.genres;
@@ -38,4 +41,26 @@ export const selectIsFilteredBooksLoading = createSelector<
 >(
   getFilteredBooksState,
   (filteredBooksState): boolean => filteredBooksState.loading
+);
+
+const getCreatedRecommendationsState = (
+  state: RootState
+): CreatedRecommendationsState => state.createdRecommendations;
+
+export const selectIsCreatedRecommendationsLoading = createSelector<
+  RootState,
+  CreatedRecommendationsState,
+  boolean
+>(
+  getCreatedRecommendationsState,
+  (createdRecState): boolean => createdRecState.loading
+);
+
+export const selectCreatedRecommendations = createSelector<
+  RootState,
+  CreatedRecommendationsState,
+  IBook[]
+>(
+  getCreatedRecommendationsState,
+  (createdRecState): IBook[] => createdRecState.createdRecommendationsData
 );

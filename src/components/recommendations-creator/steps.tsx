@@ -15,6 +15,8 @@ type Props = {
   isLoadingFilteredBooks: boolean;
   filteredBooksData: IBook[];
   fetchFilteredBooks: (type: BookType, genres: string[]) => void;
+  isCreatingRecommendations: boolean;
+  fetchCreatedRecommendations: (ids: number[]) => void;
 };
 
 export const StepsBlock = (props: Props) => {
@@ -24,9 +26,11 @@ export const StepsBlock = (props: Props) => {
     isLoadingFilteredBooks,
     filteredBooksData,
     fetchFilteredBooks,
+    isCreatingRecommendations,
+    fetchCreatedRecommendations,
   } = props;
 
-  const [currentStep, setCurrentStep] = useState<number>(2);
+  const [currentStep, setCurrentStep] = useState<number>(0);
   const [selectedType, setSelectedType] = useState<BookType | undefined>(
     undefined
   );
@@ -106,7 +110,11 @@ export const StepsBlock = (props: Props) => {
       setSelectedBooks([]);
       fetchFilteredBooks(selectedType as BookType, selectedGenres);
     }
-    next();
+    if (currentStep === 2) {
+      fetchCreatedRecommendations(selectedBooks);
+    } else {
+      next();
+    }
   };
 
   return (
@@ -130,6 +138,7 @@ export const StepsBlock = (props: Props) => {
           onClick={onNextClick}
           className={styles.stepBtnNext}
           disabled={getIsNextDisabled()}
+          loading={currentStep === 2 && isCreatingRecommendations}
         >
           {currentStep === steps.length - 1
             ? "Подобрать рекомендации"

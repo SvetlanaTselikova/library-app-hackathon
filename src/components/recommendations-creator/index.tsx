@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Button, Modal } from "antd";
 import styles from "./index.module.sass";
 import magic from "../../images/magic.png";
@@ -12,6 +12,8 @@ type Props = {
   isLoadingFilteredBooks: boolean;
   filteredBooksData: IBook[];
   fetchFilteredBooks: (type: BookType, genres: string[]) => void;
+  fetchCreatedRecommendations: (ids: number[]) => void;
+  isCreatingRecommendations: boolean;
 };
 
 export const RecommendationsCreator = (props: Props) => {
@@ -21,8 +23,25 @@ export const RecommendationsCreator = (props: Props) => {
     isLoadingFilteredBooks,
     filteredBooksData,
     fetchFilteredBooks,
+    isCreatingRecommendations,
+    fetchCreatedRecommendations,
   } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
+
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+  const prevIsCreating = usePrevious(isCreatingRecommendations);
+  useEffect(() => {
+    if (prevIsCreating && !isCreatingRecommendations) {
+      setIsOpen(false);
+    }
+  }, [isCreatingRecommendations]);
+
   return (
     <React.Fragment>
       <Button
@@ -42,6 +61,8 @@ export const RecommendationsCreator = (props: Props) => {
           isLoadingFilteredBooks={isLoadingFilteredBooks}
           filteredBooksData={filteredBooksData}
           fetchFilteredBooks={fetchFilteredBooks}
+          isCreatingRecommendations={isCreatingRecommendations}
+          fetchCreatedRecommendations={fetchCreatedRecommendations}
         />
       ) : null}
     </React.Fragment>

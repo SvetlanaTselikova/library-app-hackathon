@@ -6,6 +6,7 @@ import * as books from "./books.epic";
 import * as target from "./target.epic";
 import * as genres from "./genres.epic";
 import * as filteredBooks from "./filtered-books";
+import * as createdRecommendations from "./created-recommendations";
 
 const rootEpic = combineEpics(
   ...Object.values(users),
@@ -14,7 +15,8 @@ const rootEpic = combineEpics(
   ...Object.values(books),
   ...Object.values(target),
   ...Object.values(genres),
-  ...Object.values(filteredBooks)
+  ...Object.values(filteredBooks),
+  ...Object.values(createdRecommendations)
 );
 
 export default rootEpic;
