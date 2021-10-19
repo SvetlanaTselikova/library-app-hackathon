@@ -21,6 +21,7 @@ function prepareTargetMock(bookIds: number[]) {
       volume: 123,
       rubric: "rubric",
       keyword: "keyword",
+      title_additional: ["add1", "add2", "add3", "add4"],
     };
     const book = {
       ...bookObj,

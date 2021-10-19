@@ -18,11 +18,12 @@ function preparePopularMock() {
       id: inx,
       author: `${inx} author`,
       year: 123,
-      annotation: `${inx} annotation`,
+      annotation: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.`,
       age_resctriction: 16,
       volume: 123,
       rubric: "rubric",
       keyword: "keyword",
+      title_additional: ["add1", "add2", "add3", "add4"],
     };
     const monthBook = {
       ...bookObj,

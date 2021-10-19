@@ -4,7 +4,7 @@ import { Typography, Carousel, Divider } from "antd";
 import { IBook } from "../../types/common";
 import styles from "./index.module.sass";
 import { BooksCarousel } from "../books-carousel";
-import { Book } from "../book";
+import { BookWrapper } from "../book-wrapper";
 
 type Props = {
   title: string;
@@ -21,7 +21,7 @@ export const BooksBlock: React.FC<Props> = (props: Props) => {
       <Typography.Title level={4}>{title}</Typography.Title>
       <BooksCarousel>
         {books.map((item, inx) => (
-          <Book book={item} />
+          <BookWrapper book={item} />
         ))}
       </BooksCarousel>
     </div>

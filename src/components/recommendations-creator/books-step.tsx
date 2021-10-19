@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Skeleton } from "antd";
 import styles from "./index.module.sass";
 import { BooksCarousel } from "../books-carousel";
-import { Book } from "../book";
+import { BookWrapper } from "../book-wrapper";
 import { IBook } from "../../types/common";
 
 type Props = {
@@ -47,7 +47,7 @@ export const BooksStep = (props: Props) => {
           }`}
           onClick={() => onPick(item.id)}
         >
-          <Book book={item} />
+          <BookWrapper book={item} />
         </div>
       ))}
     </BooksCarousel>

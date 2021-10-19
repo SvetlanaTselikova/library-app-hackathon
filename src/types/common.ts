@@ -8,6 +8,7 @@ export interface IBook {
   volume: number;
   rubric: string;
   keyword: string;
+  title_additional: string[];
 }
 
 export enum ContentMode {
