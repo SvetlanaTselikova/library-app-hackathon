@@ -1,4 +1,4 @@
-import { filter, map, switchMap, catchError } from "rxjs/operators";
+import { filter, map, switchMap, catchError, take } from "rxjs/operators";
 import { of } from "rxjs";
 import {
   fetchFilteredBooksFailure,
@@ -6,7 +6,7 @@ import {
   fetchFilteredBooksSuccess,
 } from "../slices/filtered-books";
 import { RootEpic } from "../types";
-import { IBook } from "../../types/common";
+import { BookType, IBook } from "../../types/common";
 
 function prepareFilteredBooksMock() {
   const books: IBook[] = [];
@@ -32,6 +32,14 @@ function prepareFilteredBooksMock() {
   };
 }
 
+export const init: RootEpic = (action$, state$) => {
+  return state$.pipe(
+    take(1),
+    map(() =>
+      fetchFilteredBooksRequest({ type: BookType.classic, genres: ["sss"] })
+    )
+  );
+};
 export const loadFilteredBooks: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchFilteredBooksRequest.match),

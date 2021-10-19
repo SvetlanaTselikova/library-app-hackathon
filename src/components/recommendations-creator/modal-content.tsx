@@ -3,6 +3,7 @@ import { Modal } from "antd";
 
 import { AskBlock } from "./ask";
 import { StepsBlock } from "./steps";
+import { IBook, BookType } from "../../types/common";
 
 enum ModalMode {
   steps = "steps",
@@ -14,12 +15,21 @@ type Props = {
   onClose: () => void;
   isLoadingGenres: boolean;
   genresData: string[];
+  isLoadingFilteredBooks: boolean;
+  filteredBooksData: IBook[];
+  fetchFilteredBooks: (type: BookType, genres: string[]) => void;
 };
 
 export const ModalContent = (props: Props) => {
   const { isOpen, onClose } = props;
-  const { isLoadingGenres, genresData } = props;
-  const [mode, setMode] = useState<ModalMode>(ModalMode.ask);
+  const {
+    isLoadingGenres,
+    genresData,
+    isLoadingFilteredBooks,
+    filteredBooksData,
+    fetchFilteredBooks,
+  } = props;
+  const [mode, setMode] = useState<ModalMode>(ModalMode.steps);
   return (
     <Modal visible={isOpen} footer={null} onCancel={onClose} closable>
       {mode === ModalMode.ask ? (
@@ -28,7 +38,13 @@ export const ModalContent = (props: Props) => {
           onNext={() => setMode(ModalMode.steps)}
         />
       ) : (
-        <StepsBlock genresData={genresData} isLoadingGenres={isLoadingGenres} />
+        <StepsBlock
+          genresData={genresData}
+          isLoadingGenres={isLoadingGenres}
+          isLoadingFilteredBooks={isLoadingFilteredBooks}
+          filteredBooksData={filteredBooksData}
+          fetchFilteredBooks={fetchFilteredBooks}
+        />
       )}
     </Modal>
   );
