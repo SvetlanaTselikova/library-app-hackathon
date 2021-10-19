@@ -25,6 +25,7 @@ export const StepsBlock = (props: Props) => {
     filteredBooksData,
     fetchFilteredBooks,
   } = props;
+
   const [currentStep, setCurrentStep] = useState<number>(2);
   const [selectedType, setSelectedType] = useState<BookType | undefined>(
     undefined
@@ -66,7 +67,7 @@ export const StepsBlock = (props: Props) => {
           booksData={filteredBooksData}
           onPick={(value) => {
             let newSelectedBooks;
-            if (selectedBooks[value]) {
+            if (selectedBooks.includes(value)) {
               newSelectedBooks = selectedBooks.filter((item) => item !== value);
             } else {
               newSelectedBooks = [...selectedBooks, value];
@@ -102,6 +103,7 @@ export const StepsBlock = (props: Props) => {
 
   const onNextClick = () => {
     if (currentStep === 1) {
+      setSelectedBooks([]);
       fetchFilteredBooks(selectedType as BookType, selectedGenres);
     }
     next();

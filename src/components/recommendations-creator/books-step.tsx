@@ -34,13 +34,19 @@ const carouselResponsive = [
 ];
 
 export const BooksStep = (props: Props) => {
-  const { isLoadingBooks, booksData, selectedBooks } = props;
+  const { isLoadingBooks, booksData, selectedBooks, onPick } = props;
   return isLoadingBooks ? (
     <Skeleton active />
   ) : (
     <BooksCarousel responsive={carouselResponsive} slidesToShow={5}>
-      {booksData.map((item) => (
-        <div>
+      {booksData.map((item, inx) => (
+        <div
+          key={inx}
+          className={`${styles.bookBlock} ${
+            selectedBooks.includes(item.id) ? styles.selectedBook : undefined
+          }`}
+          onClick={() => onPick(item.id)}
+        >
           <Book book={item} />
         </div>
       ))}
