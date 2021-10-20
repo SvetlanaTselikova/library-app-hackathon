@@ -33,6 +33,14 @@ export const UserSelect: React.FC<Props> = (props: Props) => {
           placeholder="Выберите идентификатор..."
           loading={isLoadingUsers}
           showSearch
+          filterOption={(input, option) => {
+            const optionStr = option?.value?.toString();
+            if (optionStr.indexOf(input) === 0 || optionStr === NO_HISTORY) {
+              return true;
+            } else {
+              return false;
+            }
+          }}
         >
           <Select.Option key={NO_HISTORY} value={NO_HISTORY}>
             Пользователь без истории
