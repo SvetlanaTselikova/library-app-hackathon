@@ -55,25 +55,17 @@ export const BooksCarousel: React.FC<Props> = (props: Props) => {
 function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <Button
-      className={`${className} ${styles.arrow}`}
-      shape="round"
-      style={style}
-      onClick={onClick}
-      icon={<RightOutlined />}
-    />
+    <div className={`${className} ${styles.arrow}`} style={style}>
+      <Button shape="circle" onClick={onClick} icon={<RightOutlined />} />
+    </div>
   );
 }
 
 function PrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <Button
-      className={`${className} ${styles.arrow}`}
-      shape="round"
-      style={style}
-      onClick={onClick}
-      icon={<LeftOutlined />}
-    />
+    <div className={`${className} ${styles.arrow}`} style={style}>
+      <Button shape="circle" onClick={onClick} icon={<LeftOutlined />} />
+    </div>
   );
 }
