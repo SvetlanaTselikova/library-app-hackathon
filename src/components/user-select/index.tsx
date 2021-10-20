@@ -54,7 +54,7 @@ export const UserSelect: React.FC<Props> = (props: Props) => {
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
-          Предсказать
+          Получить рекомендации
         </Button>
       </Form.Item>
     </Form>
