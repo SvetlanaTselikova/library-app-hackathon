@@ -18,6 +18,9 @@ function prepareGenresMock() {
     "Эзотерика",
     "Астрология",
     "Психология",
+    "Семейная",
+    "Мистика",
+    "Лирика",
   ];
 }
 export const init: RootEpic = (action$, state$) => {
