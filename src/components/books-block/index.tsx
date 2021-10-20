@@ -10,10 +10,11 @@ type Props = {
   title: string;
   books: IBook[];
   isTarget?: boolean;
+  popupPlacement?: string;
 };
 
 export const BooksBlock: React.FC<Props> = (props: Props) => {
-  const { title, books, isTarget } = props;
+  const { title, books, isTarget, popupPlacement } = props;
 
   return (
     <div style={{ margin: isTarget ? "40px 0 0 0 " : "40px 0" }}>
@@ -21,7 +22,7 @@ export const BooksBlock: React.FC<Props> = (props: Props) => {
       <Typography.Title level={4}>{title}</Typography.Title>
       <BooksCarousel>
         {books.map((item, inx) => (
-          <BookWrapper book={item} />
+          <BookWrapper book={item} popupPlacement={popupPlacement} />
         ))}
       </BooksCarousel>
     </div>

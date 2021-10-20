@@ -32,6 +32,7 @@ export const RecommendationsCreatorContainer = () => {
     <BooksBlock
       books={createdRecommendationsData}
       title="Ваши персональные рекомендации"
+      popupPlacement="right"
     />
   ) : (
     <RecommendationsCreator

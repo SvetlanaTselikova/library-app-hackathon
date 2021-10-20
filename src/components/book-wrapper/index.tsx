@@ -7,10 +7,11 @@ import { COLORS } from "../../constants";
 
 type Props = {
   book: IBook;
+  popupPlacement?: string;
 };
 
 export const BookWrapper: React.FC<Props> = (props: Props) => {
-  const { book } = props;
+  const { book, popupPlacement } = props;
   const [color, setColor] = useState<COLORS>(COLORS.orange);
   const pickColor = () => {
     const colors = Object.values(COLORS);
@@ -27,6 +28,7 @@ export const BookWrapper: React.FC<Props> = (props: Props) => {
       content={<BookPopover book={book} color={color} />}
       trigger="hover"
       title="Описание книги"
+      placement={popupPlacement as any}
     >
       <div style={{ display: "inline-block" }}>
         <Book book={book} color={color} />

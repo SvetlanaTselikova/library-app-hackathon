@@ -44,7 +44,7 @@ export const ContentContainer = () => {
       return (
         <React.Fragment>
           <TargetContainer />
-          <RecommendationsContainer />;
+          <RecommendationsContainer />
         </React.Fragment>
       );
     }
