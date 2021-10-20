@@ -1,5 +1,5 @@
 import { filter, map, switchMap, catchError } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, delay } from "rxjs";
 import {
   fetchTargetFailure,
   fetchTargetRequest,
@@ -38,6 +38,7 @@ function prepareTargetMock(bookIds: number[]) {
 export const loadTarget: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchTargetRequest.match),
+    delay(1000),
     switchMap((action) => {
       const response = prepareTargetMock(action.payload);
       return of(response).pipe(

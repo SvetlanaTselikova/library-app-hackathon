@@ -1,5 +1,5 @@
 import { filter, map, switchMap, catchError } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, delay } from "rxjs";
 import {
   fetchPopularFailure,
   fetchPopularRequest,
@@ -62,6 +62,7 @@ export const initLoadPopular: RootEpic = (action$, state$) => {
 export const loadPopular: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchPopularRequest.match),
+    delay(1000),
     switchMap((action) => {
       const response = preparePopularMock();
       return of(response).pipe(

@@ -1,5 +1,5 @@
 import { filter, map, switchMap, catchError, take } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, delay } from "rxjs";
 import {
   fetchUsersFailure,
   fetchUsersRequest,
@@ -18,6 +18,7 @@ export const init: RootEpic = (action$, state$) => {
 export const loadUsers: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchUsersRequest.match),
+    delay(1000),
     switchMap(() => {
       const mockIds = [...Array(100).keys()]; // TODO: remove mock !!!!
 

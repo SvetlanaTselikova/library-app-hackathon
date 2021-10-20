@@ -1,5 +1,5 @@
 import { filter, map, switchMap, catchError, concatMap } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, delay } from "rxjs";
 import {
   fetchCreatedRecommendationsFailure,
   fetchCreatedRecommendationsRequest,
@@ -38,6 +38,7 @@ function prepareCreatedRecommendationsMock() {
 export const loadCreatedRecommendations: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchCreatedRecommendationsRequest.match),
+    delay(1000),
     switchMap((action) => {
       const response = prepareCreatedRecommendationsMock();
       return of(response).pipe(

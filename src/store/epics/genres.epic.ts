@@ -1,5 +1,5 @@
 import { filter, map, switchMap, catchError, take } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, delay } from "rxjs";
 import {
   fetchGenresFailure,
   fetchGenresRequest,
@@ -32,6 +32,7 @@ export const init: RootEpic = (action$, state$) => {
 export const loadGenres: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchGenresRequest.match),
+    delay(1000),
     switchMap((action) => {
       const response = prepareGenresMock();
       return of(response).pipe(

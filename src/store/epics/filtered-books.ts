@@ -1,5 +1,5 @@
 import { filter, map, switchMap, catchError, take } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, delay } from "rxjs";
 import {
   fetchFilteredBooksFailure,
   fetchFilteredBooksRequest,
@@ -37,6 +37,7 @@ function prepareFilteredBooksMock() {
 export const loadFilteredBooks: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchFilteredBooksRequest.match),
+    delay(1000),
     switchMap((action) => {
       const response = prepareFilteredBooksMock();
       return of(response).pipe(

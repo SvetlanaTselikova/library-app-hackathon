@@ -1,5 +1,5 @@
 import { filter, map, switchMap, catchError, concatMap } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, delay } from "rxjs";
 import {
   fetchRecommendationsFailure,
   fetchRecommendationsRequest,
@@ -46,6 +46,7 @@ function prepareRecommendationsMock(userId: number) {
 export const loadRecommendations: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchRecommendationsRequest.match),
+    delay(1000),
     switchMap((action) => {
       if (action.payload === NO_HISTORY) {
         return of(setContentMode(ContentMode.populdar));
