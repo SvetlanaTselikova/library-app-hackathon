@@ -8,7 +8,7 @@ import {
 import { RootEpic } from "../types";
 import { ContentMode, IBook } from "../../types/common";
 import { setContentMode } from "../slices/content-mode";
-import { getRandomInt } from "../../utils";
+import { errorNotification, getRandomInt } from "../../utils";
 
 function preparePopularMock() {
   const month: IBook[] = [];
@@ -67,7 +67,10 @@ export const loadPopular: RootEpic = (action$, state$) => {
       return of(response).pipe(
         // TODO: remove mock !!!
         map((value) => fetchPopularSuccess(value)),
-        catchError(() => of(fetchPopularFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchPopularFailure());
+        })
       );
     })
   );

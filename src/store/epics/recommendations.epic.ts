@@ -9,7 +9,7 @@ import { RootEpic } from "../types";
 import { ContentMode, IBook } from "../../types/common";
 import { fetchPopularRequest, setContentMode } from "../slices";
 import { NO_HISTORY } from "../../constants";
-import { getRandomInt } from "../../utils";
+import { errorNotification, getRandomInt } from "../../utils";
 
 function prepareRecommendationsMock(userId: number) {
   const recommendations: IBook[] = [];
@@ -63,7 +63,10 @@ export const loadRecommendations: RootEpic = (action$, state$) => {
             return of(setContentMode(ContentMode.populdar));
           }
         }),
-        catchError(() => of(fetchRecommendationsFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchRecommendationsFailure());
+        })
       );
     })
   );

@@ -8,7 +8,7 @@ import {
 import { RootEpic } from "../types";
 import { IBook } from "../../types/common";
 import { fetchRecommendationsRequest } from "../slices";
-import { getRandomInt } from "../../utils";
+import { errorNotification, getRandomInt } from "../../utils";
 
 function prepareTargetMock(bookIds: number[]) {
   const books: IBook[] = [];
@@ -43,7 +43,10 @@ export const loadTarget: RootEpic = (action$, state$) => {
       return of(response).pipe(
         // TODO: remove mock !!!
         map((value) => fetchTargetSuccess(value)),
-        catchError(() => of(fetchTargetFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchTargetFailure());
+        })
       );
     })
   );

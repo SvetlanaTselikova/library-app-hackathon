@@ -7,6 +7,7 @@ import {
 } from "../slices/filtered-books";
 import { RootEpic } from "../types";
 import { BookType, IBook } from "../../types/common";
+import { errorNotification } from "../../utils";
 
 function prepareFilteredBooksMock() {
   const books: IBook[] = [];
@@ -49,7 +50,10 @@ export const loadFilteredBooks: RootEpic = (action$, state$) => {
       return of(response).pipe(
         // TODO: remove mock !!!
         map((value) => fetchFilteredBooksSuccess(value)),
-        catchError(() => of(fetchFilteredBooksFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchFilteredBooksFailure());
+        })
       );
     })
   );

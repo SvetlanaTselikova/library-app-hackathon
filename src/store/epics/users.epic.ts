@@ -6,6 +6,7 @@ import {
   fetchUsersSuccess,
 } from "../slices/users";
 import { RootEpic } from "../types";
+import { errorNotification } from "../../utils";
 
 export const init: RootEpic = (action$, state$) => {
   return state$.pipe(
@@ -22,7 +23,10 @@ export const loadUsers: RootEpic = (action$, state$) => {
 
       return of(mockIds).pipe(
         map((value) => fetchUsersSuccess(value)),
-        catchError(() => of(fetchUsersFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchUsersFailure());
+        })
       );
     })
   );

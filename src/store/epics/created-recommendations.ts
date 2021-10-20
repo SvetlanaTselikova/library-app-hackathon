@@ -8,7 +8,7 @@ import {
 import { RootEpic } from "../types";
 import { IBook } from "../../types/common";
 import { fetchRecommendationsRequest } from "../slices";
-import { getRandomInt } from "../../utils";
+import { errorNotification, getRandomInt } from "../../utils";
 
 function prepareCreatedRecommendationsMock() {
   const books: IBook[] = [];
@@ -43,7 +43,10 @@ export const loadCreatedRecommendations: RootEpic = (action$, state$) => {
       return of(response).pipe(
         // TODO: remove mock !!!
         map((value) => fetchCreatedRecommendationsSuccess(value)),
-        catchError(() => of(fetchCreatedRecommendationsFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchCreatedRecommendationsFailure());
+        })
       );
     })
   );

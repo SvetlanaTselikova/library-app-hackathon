@@ -6,6 +6,7 @@ import {
   fetchBooksSuccess,
 } from "../slices/books";
 import { RootEpic } from "../types";
+import { errorNotification } from "../../utils";
 
 export const init: RootEpic = (action$, state$) => {
   return state$.pipe(
@@ -22,7 +23,10 @@ export const loadBooks: RootEpic = (action$, state$) => {
 
       return of(mockIds).pipe(
         map((value) => fetchBooksSuccess(value)),
-        catchError(() => of(fetchBooksFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchBooksFailure());
+        })
       );
     })
   );

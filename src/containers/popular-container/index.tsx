@@ -8,7 +8,6 @@ export const PopularContainer = () => {
   const monthData = useSelector(selectMonthData);
   const russianData = useSelector(selectRussianData);
   const newData = useSelector(selectNewData);
-
   return (
     <React.Fragment>
       <BooksBlock title="Популярное за месяц" books={monthData} />

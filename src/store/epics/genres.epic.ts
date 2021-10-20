@@ -6,6 +6,7 @@ import {
   fetchGenresSuccess,
 } from "../slices/genres";
 import { RootEpic } from "../types";
+import { errorNotification } from "../../utils";
 
 function prepareGenresMock() {
   return [
@@ -33,7 +34,10 @@ export const loadGenres: RootEpic = (action$, state$) => {
       return of(response).pipe(
         // TODO: remove mock !!!
         map((value) => fetchGenresSuccess(value)),
-        catchError(() => of(fetchGenresFailure()))
+        catchError(() => {
+          errorNotification();
+          return of(fetchGenresFailure());
+        })
       );
     })
   );
