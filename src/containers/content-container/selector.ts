@@ -4,6 +4,7 @@ import { ContentModeState } from "../../store/slices";
 import { ContentMode } from "../../types/common";
 import { selectIsPopularLoading } from "../popular-container/selector";
 import { selectIsRecommendationsLoading } from "../recommendations-container/selector";
+import { UsersState } from "../../store/slices";
 
 const getContentModeState = (state: RootState): ContentModeState =>
   state.contentMode;
@@ -28,3 +29,16 @@ export const selectIsLoadingContent = createSelector<
   (isRecommendationsLoading, isPopularLoading): boolean =>
     isRecommendationsLoading || isPopularLoading
 );
+
+const getUsersState = (state: RootState): UsersState => state.users;
+
+export const selectUsersIds = createSelector<RootState, UsersState, number[]>(
+  getUsersState,
+  (usersState): number[] => usersState.ids
+);
+
+export const selectIsLoadingUsers = createSelector<
+  RootState,
+  UsersState,
+  boolean
+>(getUsersState, (usersState): boolean => usersState.loading);

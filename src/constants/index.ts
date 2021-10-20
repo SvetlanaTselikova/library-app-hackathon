@@ -20,3 +20,5 @@ export const BAGES_COLOR_MAP = {
   [COLORS.orange]: "#ff9c6e",
   [COLORS.green]: "#36cfc9",
 };
+
+export const USER_PARAM = "user";
