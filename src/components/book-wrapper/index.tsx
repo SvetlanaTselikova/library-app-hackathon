@@ -14,8 +14,14 @@ export const BookWrapper: React.FC<Props> = (props: Props) => {
   const { book, popupPlacement } = props;
   const [color, setColor] = useState<COLORS>(COLORS.orange);
   const pickColor = () => {
-    const colors = Object.values(COLORS);
-    const pickedColor = colors[Math.floor(Math.random() * colors.length)];
+    const idLastNumber = book.id % 10;
+    let pickedColor = COLORS.orange;
+    if ([1, 4, 9].includes(idLastNumber)) {
+      pickedColor = COLORS.red;
+    }
+    if ([0, 2, 5].includes(idLastNumber)) {
+      pickedColor = COLORS.green;
+    }
     return pickedColor;
   };
   useEffect(() => {

@@ -8,6 +8,7 @@ import {
 import { RootEpic } from "../types";
 import { ContentMode, IBook } from "../../types/common";
 import { setContentMode } from "../slices/content-mode";
+import { getRandomInt } from "../../utils";
 
 function preparePopularMock() {
   const month: IBook[] = [];
@@ -15,7 +16,6 @@ function preparePopularMock() {
   const news: IBook[] = [];
   [...Array(10).keys()].forEach((item, inx) => {
     const bookObj = {
-      id: inx,
       author: `${inx} author`,
       year: 123,
       annotation: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.`,
@@ -27,14 +27,17 @@ function preparePopularMock() {
     };
     const monthBook = {
       ...bookObj,
+      id: getRandomInt(0, 100),
       title: `${inx} month book for`,
     };
     const russianBook = {
       ...bookObj,
+      id: getRandomInt(0, 100),
       title: `${inx} russian book for`,
     };
     const newBook = {
       ...bookObj,
+      id: getRandomInt(0, 100),
       title: `${inx} new book for`,
     };
     month.push(monthBook);

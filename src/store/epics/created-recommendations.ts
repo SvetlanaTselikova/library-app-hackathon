@@ -8,12 +8,13 @@ import {
 import { RootEpic } from "../types";
 import { IBook } from "../../types/common";
 import { fetchRecommendationsRequest } from "../slices";
+import { getRandomInt } from "../../utils";
 
 function prepareCreatedRecommendationsMock() {
   const books: IBook[] = [];
   [...Array(10).keys()].forEach((item, inx) => {
     const bookObj = {
-      id: inx,
+      id: getRandomInt(0, 100),
       author: `${inx} author`,
       year: 123,
       annotation: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.`,

@@ -19,7 +19,7 @@ export const GenresStep = (props: Props) => {
     <Skeleton active />
   ) : (
     <div className={styles.genresContent}>
-      {genresData.map((item) => (
+      {genresData.map((item, inx) => (
         <CheckableTag
           className={styles.genreTag}
           checked={selectedGenres.includes(item)}
@@ -30,6 +30,7 @@ export const GenresStep = (props: Props) => {
               onRemove(item);
             }
           }}
+          key={inx}
         >
           {item}
         </CheckableTag>

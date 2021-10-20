@@ -22,7 +22,9 @@ export const BooksBlock: React.FC<Props> = (props: Props) => {
       <Typography.Title level={4}>{title}</Typography.Title>
       <BooksCarousel>
         {books.map((item, inx) => (
-          <BookWrapper book={item} popupPlacement={popupPlacement} />
+          <React.Fragment key={inx}>
+            <BookWrapper book={item} popupPlacement={popupPlacement} />
+          </React.Fragment>
         ))}
       </BooksCarousel>
     </div>

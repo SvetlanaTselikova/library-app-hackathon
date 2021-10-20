@@ -26,9 +26,11 @@ export const BookPopover: React.FC<Props> = (props: Props) => {
             <Tag className={styles.tag}>{book.keyword}</Tag>
           ) : null}
           {Array.isArray(book.title_additional)
-            ? book.title_additional
-                .slice(0, 5)
-                .map((item) => <Tag className={styles.tag}>{item}</Tag>)
+            ? book.title_additional.slice(0, 5).map((item, inx) => (
+                <Tag className={styles.tag} key={inx}>
+                  {item}
+                </Tag>
+              ))
             : null}
         </div>
       </div>
