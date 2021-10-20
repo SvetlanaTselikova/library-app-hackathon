@@ -47,7 +47,11 @@ export const BooksStep = (props: Props) => {
           }`}
           onClick={() => onPick(item.id)}
         >
-          <BookWrapper book={item} popupPlacement="right" />
+          <BookWrapper
+            book={item}
+            popupPlacement="right"
+            popupTrigger="hover"
+          />
         </div>
       ))}
     </BooksCarousel>

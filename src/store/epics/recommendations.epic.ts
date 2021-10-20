@@ -16,7 +16,6 @@ function prepareRecommendationsMock(userId: number) {
   const history: IBook[] = [];
   [...Array(10).keys()].forEach((item, inx) => {
     const bookObj = {
-      id: getRandomInt(0, 100),
       author: `${inx} author`,
       year: 123,
       annotation: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.`,
@@ -28,10 +27,12 @@ function prepareRecommendationsMock(userId: number) {
     };
     const recommendedBook = {
       ...bookObj,
+      id: getRandomInt(0, 100),
       title: `${inx} rec book for ${userId}`,
     };
     const historyBook = {
       ...bookObj,
+      id: getRandomInt(0, 100),
       title: `${inx} history book for ${userId}`,
     };
     recommendations.push(recommendedBook);

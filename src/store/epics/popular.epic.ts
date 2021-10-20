@@ -28,17 +28,17 @@ function preparePopularMock() {
     const monthBook = {
       ...bookObj,
       id: getRandomInt(0, 100),
-      title: `${inx} month book for`,
+      title: `${inx} month book`,
     };
     const russianBook = {
       ...bookObj,
       id: getRandomInt(0, 100),
-      title: `${inx} russian book for`,
+      title: `${inx} russian book`,
     };
     const newBook = {
       ...bookObj,
       id: getRandomInt(0, 100),
-      title: `${inx} new book for`,
+      title: `${inx} new book`,
     };
     month.push(monthBook);
     russian.push(russianBook);
