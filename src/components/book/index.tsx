@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Badge } from "antd";
 import { BACKGROUND_MAP, BAGES_COLOR_MAP } from "../../constants";
 import { IBook } from "../../types/common";

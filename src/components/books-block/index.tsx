@@ -1,8 +1,7 @@
 import React from "react";
-import { Typography, Carousel, Divider } from "antd";
+import { Typography, Divider } from "antd";
 
 import { IBook } from "../../types/common";
-import styles from "./index.module.sass";
 import { BooksCarousel } from "../books-carousel";
 import { BookWrapper } from "../book-wrapper";
 

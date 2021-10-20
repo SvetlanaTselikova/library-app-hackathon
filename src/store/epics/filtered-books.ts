@@ -1,4 +1,4 @@
-import { filter, map, switchMap, catchError, take } from "rxjs/operators";
+import { filter, map, switchMap, catchError } from "rxjs/operators";
 import { of, delay } from "rxjs";
 import {
   fetchFilteredBooksFailure,
@@ -6,7 +6,7 @@ import {
   fetchFilteredBooksSuccess,
 } from "../slices/filtered-books";
 import { RootEpic } from "../types";
-import { BookType, IBook } from "../../types/common";
+import { IBook } from "../../types/common";
 import { errorNotification, getRandomInt } from "../../utils";
 
 function prepareFilteredBooksMock() {

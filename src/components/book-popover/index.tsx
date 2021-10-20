@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Tag } from "antd";
 import { IBook } from "../../types/common";
 import { Book } from "../book";

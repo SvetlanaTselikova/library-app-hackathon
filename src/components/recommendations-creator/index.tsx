@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Button, Modal } from "antd";
+import { Button } from "antd";
 import styles from "./index.module.sass";
 import magic from "../../images/magic.png";
 
@@ -50,7 +50,7 @@ export const RecommendationsCreator = (props: Props) => {
         type="link"
       >
         Подобрать персональные рекомендации
-        <img src={magic} className={styles.magicImg} />
+        <img src={magic} className={styles.magicImg} alt="" />
       </Button>
       {isOpen ? (
         <ModalContent

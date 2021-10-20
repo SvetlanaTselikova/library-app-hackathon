@@ -1,7 +1,6 @@
 import { RootState } from "../../store/types";
 import { createSelector } from "reselect";
 import { GenresState } from "../../store/slices";
-import { BooksState } from "../../store/slices";
 import {
   FilteredBooksState,
   CreatedRecommendationsState,

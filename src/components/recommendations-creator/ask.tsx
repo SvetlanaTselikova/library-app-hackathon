@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Result, Space } from "antd";
 import styles from "./index.module.sass";
 import img from "../../images/reading.png";
@@ -23,7 +23,7 @@ export const AskBlock = (props: Props) => {
           </Button>
         </Space>
       }
-      icon={<img src={img} className={styles.askImg} />}
+      icon={<img src={img} alt="" className={styles.askImg} />}
     />
   );
 };

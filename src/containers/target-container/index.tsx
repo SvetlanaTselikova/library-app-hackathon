@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Collapse, Skeleton } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
 import {
   selectTargetsData,
   selectIsTargetLoading,

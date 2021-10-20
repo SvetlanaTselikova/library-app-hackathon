@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Skeleton } from "antd";
 import styles from "./index.module.sass";
 import { BooksCarousel } from "../books-carousel";

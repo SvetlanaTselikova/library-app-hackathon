@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Tag, Skeleton } from "antd";
 import styles from "./index.module.sass";
 
