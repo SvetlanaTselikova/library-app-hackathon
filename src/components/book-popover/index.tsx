@@ -14,7 +14,7 @@ export const BookPopover: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.wrapper}>
       <Book book={book} color={color} />
-      <div>
+      <div className={styles.description}>
         <div className={styles.annotation}>{book.annotation}</div>
         <div className={styles.age}>{book.year}</div>
         <div className={styles.volume}>{book.volume} страниц</div>

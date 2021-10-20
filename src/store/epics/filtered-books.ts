@@ -34,14 +34,6 @@ function prepareFilteredBooksMock() {
   };
 }
 
-export const init: RootEpic = (action$, state$) => {
-  return state$.pipe(
-    take(1),
-    map(() =>
-      fetchFilteredBooksRequest({ type: BookType.classic, genres: ["sss"] })
-    )
-  );
-};
 export const loadFilteredBooks: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchFilteredBooksRequest.match),
