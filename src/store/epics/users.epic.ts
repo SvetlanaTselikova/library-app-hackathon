@@ -1,5 +1,6 @@
 import { filter, map, switchMap, catchError, take } from "rxjs/operators";
-import { of, delay } from "rxjs";
+import { of } from "rxjs";
+import { ajax } from "rxjs/ajax";
 import {
   fetchUsersFailure,
   fetchUsersRequest,
@@ -7,6 +8,7 @@ import {
 } from "../slices/users";
 import { RootEpic } from "../types";
 import { errorNotification } from "../../utils";
+import { BACKEND_URL } from "../../constants";
 
 export const init: RootEpic = (action$, state$) => {
   return state$.pipe(
@@ -18,12 +20,9 @@ export const init: RootEpic = (action$, state$) => {
 export const loadUsers: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchUsersRequest.match),
-    delay(1000),
     switchMap(() => {
-      const mockIds = [...Array(100).keys()]; // TODO: remove mock !!!!
-
-      return of(mockIds).pipe(
-        map((value) => fetchUsersSuccess(value)),
+      return ajax.get<{ ids: number[] }>(`${BACKEND_URL}/users`).pipe(
+        map((value) => fetchUsersSuccess(value?.response)),
         catchError(() => {
           errorNotification();
           return of(fetchUsersFailure());

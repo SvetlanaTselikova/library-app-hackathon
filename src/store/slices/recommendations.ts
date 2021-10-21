@@ -39,8 +39,8 @@ export const recommendationsSlice = createSlice({
     ): RecommendationsState => ({
       ...state,
       loading: false,
-      recommendationsData: action.payload.recommendations,
-      historyData: action.payload.history,
+      recommendationsData: action.payload?.recommendations || [],
+      historyData: action.payload?.history || [],
     }),
   },
 });

@@ -22,3 +22,5 @@ export const BAGES_COLOR_MAP = {
 };
 
 export const USER_PARAM = "user";
+
+export const BACKEND_URL = "http://localhost:4000";

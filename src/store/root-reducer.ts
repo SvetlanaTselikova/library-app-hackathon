@@ -19,7 +19,6 @@ export default combineReducers({
   books: booksSlice.reducer,
   target: targetSlice.reducer,
   genres: genresSlice.reducer,
-  createdRecommendationsSlice: createdRecommendationsSlice.reducer,
   filteredBooks: filteredBooksSlice.reducer,
   createdRecommendations: createdRecommendationsSlice.reducer,
 });

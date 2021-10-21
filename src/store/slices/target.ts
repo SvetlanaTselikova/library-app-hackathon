@@ -36,7 +36,7 @@ export const targetSlice = createSlice({
     ): TargetState => ({
       ...state,
       loading: false,
-      targetData: action.payload.books,
+      targetData: action.payload?.books || [],
     }),
   },
 });

@@ -36,7 +36,7 @@ export const filteredBooksSlice = createSlice({
     ): FilteredBooksState => ({
       ...state,
       loading: false,
-      filteredBooksData: action.payload.books,
+      filteredBooksData: action.payload?.books || [],
     }),
   },
 });
