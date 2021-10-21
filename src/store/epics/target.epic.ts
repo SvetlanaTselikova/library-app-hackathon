@@ -17,8 +17,8 @@ export const loadTarget: RootEpic = (action$, state$) => {
     filter(fetchTargetRequest.match),
     switchMap((action) => {
       return ajax
-        .get<{ books: IBook[] }>(
-          `${BACKEND_URL}/target?target_ids=${action.payload.join(",")}`
+        .get<{ target: IBook[] }>(
+          `${BACKEND_URL}/targets?target_ids=${action.payload.join(",")}`
         )
         .pipe(
           map((value) => fetchTargetSuccess(value?.response)),
@@ -34,6 +34,6 @@ export const loadTarget: RootEpic = (action$, state$) => {
 export const clearTarget: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchRecommendationsRequest.match),
-    map(() => fetchTargetSuccess({ books: [] }))
+    map(() => fetchTargetSuccess({ target: [] }))
   );
 };
