@@ -30,11 +30,11 @@ export const usersSlice = createSlice({
     }),
     fetchUsersSuccess: (
       state: UsersState,
-      action: PayloadAction<number[]>
+      action: PayloadAction<{ ids: number[] }>
     ): UsersState => ({
       ...state,
       loading: false,
-      ids: action.payload,
+      ids: action.payload?.ids || [],
     }),
   },
 });

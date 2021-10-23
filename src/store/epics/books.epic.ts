@@ -6,7 +6,9 @@ import {
   fetchBooksSuccess,
 } from "../slices/books";
 import { RootEpic } from "../types";
+import { ajax } from "rxjs/ajax";
 import { errorNotification } from "../../utils";
+import { BACKEND_URL } from "../../constants";
 
 export const init: RootEpic = (action$, state$) => {
   return state$.pipe(
@@ -18,12 +20,9 @@ export const init: RootEpic = (action$, state$) => {
 export const loadBooks: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchBooksRequest.match),
-    delay(1000),
     switchMap(() => {
-      const mockIds = [...Array(20).keys()]; // TODO: remove mock !!!!
-
-      return of(mockIds).pipe(
-        map((value) => fetchBooksSuccess(value)),
+      return ajax.get<{ ids: number[] }>(`${BACKEND_URL}/books`).pipe(
+        map((value) => fetchBooksSuccess(value?.response)),
         catchError(() => {
           errorNotification();
           return of(fetchBooksFailure());

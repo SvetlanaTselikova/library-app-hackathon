@@ -30,11 +30,11 @@ export const booksSlice = createSlice({
     }),
     fetchBooksSuccess: (
       state: BooksState,
-      action: PayloadAction<number[]>
+      action: PayloadAction<{ ids: number[] }>
     ): BooksState => ({
       ...state,
       loading: false,
-      ids: action.payload,
+      ids: action.payload?.ids || [],
     }),
   },
 });

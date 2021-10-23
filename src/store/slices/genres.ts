@@ -30,11 +30,11 @@ export const genresSlice = createSlice({
     }),
     fetchGenresSuccess: (
       state: GenresState,
-      action: PayloadAction<string[]>
+      action: PayloadAction<{ genres: string[] }>
     ): GenresState => ({
       ...state,
       loading: false,
-      genresData: action.payload,
+      genresData: action.payload?.genres || [],
     }),
   },
 });

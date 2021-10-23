@@ -32,11 +32,11 @@ export const targetSlice = createSlice({
     }),
     fetchTargetSuccess: (
       state: TargetState,
-      action: PayloadAction<{ books: IBook[] }>
+      action: PayloadAction<{ target: IBook[] }>
     ): TargetState => ({
       ...state,
       loading: false,
-      targetData: action.payload.books,
+      targetData: action.payload?.target || [],
     }),
   },
 });

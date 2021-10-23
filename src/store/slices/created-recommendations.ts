@@ -32,12 +32,14 @@ export const createdRecommendationsSlice = createSlice({
     }),
     fetchCreatedRecommendationsSuccess: (
       state: CreatedRecommendationsState,
-      action: PayloadAction<{ books: IBook[] }>
-    ): CreatedRecommendationsState => ({
-      ...state,
-      loading: false,
-      createdRecommendationsData: action.payload.books,
-    }),
+      action: PayloadAction<{ recommendations: IBook[]; history: IBook[] }>
+    ): CreatedRecommendationsState => {
+      return {
+        ...state,
+        loading: false,
+        createdRecommendationsData: action.payload?.recommendations || [],
+      };
+    },
   },
 });
 

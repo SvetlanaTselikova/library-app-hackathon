@@ -42,9 +42,9 @@ export const popularSlice = createSlice({
     ): PopularState => ({
       ...state,
       loading: false,
-      monthData: action.payload.month,
-      russianData: action.payload.russian,
-      newData: action.payload.news,
+      monthData: action.payload?.month || [],
+      russianData: action.payload?.russian || [],
+      newData: action.payload?.news || [],
     }),
   },
 });
