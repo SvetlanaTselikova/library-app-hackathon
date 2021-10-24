@@ -19,8 +19,8 @@ export const Book: React.FC<Props> = (props: Props) => {
       style={{ background: BACKGROUND_MAP[color] }}
     >
       <span className={styles.imageTitle}>{title}</span>
-      <span className={styles.imageAuthor}> {author}</span>
       <span className={styles.imageYear}>{year}</span>
+      <span className={styles.imageAuthor}> {author}</span>
     </span>
   );
 
