@@ -25,6 +25,9 @@ export const UserSelect: React.FC<Props> = (props: Props) => {
       className={styles.form}
       onFinish={(value) => onPredict(value[USER_INPUT])}
     >
+      <div className={styles.helpText}>
+        *Пустое поле означает, что пользователь неаутентифицирован
+      </div>
       <Form.Item
         name={USER_INPUT}
         label="Идентификатор пользователя"
