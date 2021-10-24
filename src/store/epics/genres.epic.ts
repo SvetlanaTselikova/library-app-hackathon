@@ -20,7 +20,7 @@ export const loadGenres: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchGenresRequest.match),
     switchMap((action) => {
-      return ajax.get<{ genres: string[] }>(`${BACKEND_URL}/genres`).pipe(
+      return ajax.get<{ rubrics: string[] }>(`${BACKEND_URL}/rubrics`).pipe(
         map((value) => fetchGenresSuccess(value?.response)),
         catchError(() => {
           errorNotification();
