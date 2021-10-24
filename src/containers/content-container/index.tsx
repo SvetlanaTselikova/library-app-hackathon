@@ -25,9 +25,7 @@ export const ContentContainer = () => {
   const isLoading = useSelector(selectIsLoadingContent);
   const dispatch = useDispatch();
   const location = useLocation();
-  const [currentUser, setCurrentUser] = useState<number | string | undefined>(
-    undefined
-  );
+  const [currentUser, setCurrentUser] = useState<number | undefined>(undefined);
   const userIds = useSelector(selectUsersIds);
   const isLoadingUsers = useSelector(selectIsLoadingUsers);
 
@@ -35,15 +33,15 @@ export const ContentContainer = () => {
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(location.search);
-    const currentUser = urlSearchParams.get(USER_PARAM) || NO_HISTORY;
+    const currentUser = urlSearchParams.get(USER_PARAM) || undefined;
     setCurrentUser(
-      currentUser === NO_HISTORY ? currentUser : Number(currentUser)
+      currentUser ? Number(currentUser) : (currentUser as undefined)
     );
-    dispatch(fetchRecommendationsRequest(currentUser));
+    dispatch(fetchRecommendationsRequest(currentUser || NO_HISTORY));
   }, [location]);
 
-  const onPredict = (user: number | string) => {
-    if (user === NO_HISTORY) {
+  const onPredict = (user: number | undefined) => {
+    if (!user) {
       const urlSearchParams = new URLSearchParams(location.search);
       urlSearchParams.delete(USER_PARAM);
       history.push({ search: urlSearchParams.toString() });
@@ -67,10 +65,7 @@ export const ContentContainer = () => {
         </React.Fragment>
       );
     }
-    if (
-      !userIds.includes(currentUser as number) &&
-      currentUser !== NO_HISTORY
-    ) {
+    if (!userIds.includes(currentUser as number) && currentUser) {
       return <NotFoundComponent />;
     }
     if (contentMode === ContentMode.populdar) {
@@ -95,7 +90,6 @@ export const ContentContainer = () => {
     <div className={styles.content}>
       <PageHeader />
       <UserSelect
-        userIds={userIds}
         isLoadingUsers={isLoadingUsers}
         onPredict={onPredict}
         value={currentUser}
