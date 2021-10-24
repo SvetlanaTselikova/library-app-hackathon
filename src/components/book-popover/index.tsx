@@ -19,13 +19,11 @@ export const BookPopover: React.FC<Props> = (props: Props) => {
         <div className={styles.age}>{book.year}</div>
         <div className={styles.volume}>{book.volume} страниц</div>
         <div className={styles.tags}>
-          {Array.isArray(book.rubrics)
-            ? book.rubrics.slice(0, 6).map((item, inx) => (
-                <Tag className={styles.tag} key={inx}>
-                  {item}
-                </Tag>
-              ))
-            : null}
+          {book.rubrics ? (
+            <Tag className={styles.tag} color="blue">
+              {book.rubrics}
+            </Tag>
+          ) : null}
         </div>
       </div>
     </div>
