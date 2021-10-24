@@ -6,7 +6,7 @@ export interface IBook {
   annotation: string;
   age_resctriction: number | undefined;
   volume: number;
-  genres: string[];
+  rubrics: string[];
 }
 
 export enum ContentMode {
