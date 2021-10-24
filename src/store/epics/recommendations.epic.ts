@@ -22,7 +22,7 @@ export const loadRecommendations: RootEpic = (action$, state$) => {
       }
       return ajax
         .get<{ history: IBook[]; recommendations: IBook[] }>(
-          `${BACKEND_URL}/recommendations?user_id=${action.payload}`
+          `${BACKEND_URL}/recommendations?user_id=${action.payload}&model_name=item_similarity`
         )
         .pipe(
           switchMap((value) => {

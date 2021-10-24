@@ -18,7 +18,9 @@ export const loadCreatedRecommendations: RootEpic = (action$, state$) => {
     switchMap((action) => {
       return ajax
         .get<{ history: IBook[]; recommendations: IBook[] }>(
-          `${BACKEND_URL}/recommendations?book_ids=${action.payload.join(",")}`
+          `${BACKEND_URL}/recommendations?book_ids=${action.payload.join(
+            ","
+          )}&model_name=item_similarity`
         )
         .pipe(
           map((value) => fetchCreatedRecommendationsSuccess(value?.response)),
