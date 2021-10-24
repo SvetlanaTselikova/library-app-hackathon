@@ -18,7 +18,7 @@ export const loadFilteredBooks: RootEpic = (action$, state$) => {
       const { type, genres } = action.payload;
       return ajax
         .get<{ books: IBook[] }>(
-          `${BACKEND_URL}/books_filter?type=${type}&genres=${genres.join(",")}`
+          `${BACKEND_URL}/books_filter?type=${type}&rubrics=${genres.join(",")}`
         )
         .pipe(
           map((value) => fetchFilteredBooksSuccess(value?.response)),
