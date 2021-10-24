@@ -13,14 +13,16 @@ type Props = {
 export const Book: React.FC<Props> = (props: Props) => {
   const { id, title, author, year, age_resctriction } = props.book;
   const { color } = props;
+  const formedTitle = title || "Название неизвестно";
+  const formedAuthor = author || "Автор неизвестен";
   const content = (
     <span
       className={styles.itemImage}
       style={{ background: BACKGROUND_MAP[color] }}
     >
-      <span className={styles.imageTitle}>{title}</span>
-      <span className={styles.imageYear}>{year}</span>
-      <span className={styles.imageAuthor}> {author}</span>
+      <div className={styles.imageID}>ID-{id}</div>
+      <span className={styles.imageTitle}>{formedTitle}</span>
+      <span className={styles.imageAuthor}> {formedAuthor}</span>
     </span>
   );
 
@@ -40,8 +42,8 @@ export const Book: React.FC<Props> = (props: Props) => {
         content
       )}
 
-      <span className={styles.itemTitle}>{title}</span>
-      <span className={styles.itemAuthor}>{author}</span>
+      <span className={styles.itemTitle}>{formedTitle}</span>
+      <span className={styles.itemAuthor}>{formedAuthor}</span>
     </div>
   );
 };
