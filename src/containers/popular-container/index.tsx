@@ -11,10 +11,7 @@ export const PopularContainer = () => {
   return (
     <React.Fragment>
       <BooksBlock title="Популярное за месяц" books={monthData} />
-      <BooksBlock
-        title="Популярная отечественная литература"
-        books={russianData}
-      />
+      <BooksBlock title="История России" books={russianData} />
       <BooksBlock title="Популярные новые издания" books={newData} />
     </React.Fragment>
   );

@@ -63,3 +63,12 @@ export const selectCreatedRecommendations = createSelector<
   getCreatedRecommendationsState,
   (createdRecState): IBook[] => createdRecState.createdRecommendationsData
 );
+
+export const selectCreatedRecommendationsHistory = createSelector<
+  RootState,
+  CreatedRecommendationsState,
+  IBook[]
+>(
+  getCreatedRecommendationsState,
+  (createdRecState): IBook[] => createdRecState.createdRecommendationsHistory
+);

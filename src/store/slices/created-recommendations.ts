@@ -3,11 +3,13 @@ import { IBook } from "../../types/common";
 
 export type CreatedRecommendationsState = {
   createdRecommendationsData: IBook[];
+  createdRecommendationsHistory: IBook[];
   loading: boolean;
 };
 
 const initialState: CreatedRecommendationsState = {
   createdRecommendationsData: [],
+  createdRecommendationsHistory: [],
   loading: false,
 };
 
@@ -28,6 +30,7 @@ export const createdRecommendationsSlice = createSlice({
     ): CreatedRecommendationsState => ({
       ...state,
       createdRecommendationsData: [],
+      createdRecommendationsHistory: [],
       loading: true,
     }),
     fetchCreatedRecommendationsSuccess: (
@@ -38,6 +41,7 @@ export const createdRecommendationsSlice = createSlice({
         ...state,
         loading: false,
         createdRecommendationsData: action.payload?.recommendations || [],
+        createdRecommendationsHistory: action.payload?.history || [],
       };
     },
   },

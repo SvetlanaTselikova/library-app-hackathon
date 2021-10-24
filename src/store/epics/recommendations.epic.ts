@@ -30,7 +30,7 @@ export const loadRecommendations: RootEpic = (action$, state$) => {
           const response = JSON.parse(
             (value as any)?.response.replace(/\bNaN\b/g, "null")
           );
-          if (response?.recommendations?.length) {
+          if (response?.history?.length) {
             return of(
               setContentMode(ContentMode.recommendations),
               fetchRecommendationsSuccess(response)

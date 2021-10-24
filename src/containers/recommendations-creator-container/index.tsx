@@ -10,6 +10,7 @@ import {
 import { BookType } from "../../types/common";
 import {
   selectCreatedRecommendations,
+  selectCreatedRecommendationsHistory,
   selectFilteredBooksData,
   selectGenresData,
   selectIsCreatedRecommendationsLoading,
@@ -26,14 +27,23 @@ export const RecommendationsCreatorContainer = () => {
     selectIsCreatedRecommendationsLoading
   );
   const createdRecommendationsData = useSelector(selectCreatedRecommendations);
+  const createdRecommendationsHistory = useSelector(
+    selectCreatedRecommendationsHistory
+  );
   const dispatch = useDispatch();
 
   return createdRecommendationsData.length ? (
-    <BooksBlock
-      books={createdRecommendationsData}
-      title="Ваши персональные рекомендации"
-      popupPlacement="right"
-    />
+    <React.Fragment>
+      <BooksBlock
+        books={createdRecommendationsData}
+        title="Ваши персональные рекомендации"
+        popupPlacement="right"
+      />
+      <BooksBlock
+        books={createdRecommendationsHistory}
+        title="История выбранных вами книг"
+      />
+    </React.Fragment>
   ) : (
     <RecommendationsCreator
       genresData={genresData}
