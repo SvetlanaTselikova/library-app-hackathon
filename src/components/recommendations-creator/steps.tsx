@@ -55,10 +55,9 @@ export const StepsBlock = (props: Props) => {
           isLoadingGenres={isLoadingGenres}
           genresData={genresData}
           selectedGenres={selectedGenres}
-          onAdd={(value) => setSelectedGenres([...selectedGenres, value])}
-          onRemove={(value) =>
-            setSelectedGenres(selectedGenres.filter((item) => item !== value))
-          }
+          onChange={(value) => {
+            setSelectedGenres(value);
+          }}
         />
       ),
       header: "Выберите интересные жанры",
