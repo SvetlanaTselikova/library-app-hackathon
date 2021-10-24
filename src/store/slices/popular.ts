@@ -38,13 +38,13 @@ export const popularSlice = createSlice({
     }),
     fetchPopularSuccess: (
       state: PopularState,
-      action: PayloadAction<{ month: IBook[]; russian: IBook[]; news: IBook[] }>
+      action: PayloadAction<{ month: IBook[]; russian: IBook[]; new: IBook[] }>
     ): PopularState => ({
       ...state,
       loading: false,
       monthData: action.payload?.month || [],
       russianData: action.payload?.russian || [],
-      newData: action.payload?.news || [],
+      newData: action.payload?.new || [],
     }),
   },
 });

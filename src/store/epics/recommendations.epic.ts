@@ -20,26 +20,30 @@ export const loadRecommendations: RootEpic = (action$, state$) => {
       if (action.payload === NO_HISTORY) {
         return of(setContentMode(ContentMode.populdar));
       }
-      return ajax
-        .get<{ history: IBook[]; recommendations: IBook[] }>(
-          `${BACKEND_URL}/recommendations?user_id=${action.payload}&model_name=item_similarity`
-        )
-        .pipe(
-          switchMap((value) => {
-            if (value?.response?.recommendations.length) {
-              return of(
-                setContentMode(ContentMode.recommendations),
-                fetchRecommendationsSuccess(value?.response)
-              );
-            } else {
-              return of(setContentMode(ContentMode.populdar));
-            }
-          }),
-          catchError(() => {
-            errorNotification();
-            return of(fetchRecommendationsFailure());
-          })
-        );
+
+      return ajax({
+        url: `${BACKEND_URL}/recommendations?user_id=${action.payload}&model_name=item_similarity`,
+        method: "GET",
+        responseType: "text",
+      }).pipe(
+        switchMap((value) => {
+          const response = JSON.parse(
+            (value as any)?.response.replace(/\bNaN\b/g, "null")
+          );
+          if (response?.recommendations?.length) {
+            return of(
+              setContentMode(ContentMode.recommendations),
+              fetchRecommendationsSuccess(response)
+            );
+          } else {
+            return of(setContentMode(ContentMode.populdar));
+          }
+        }),
+        catchError(() => {
+          errorNotification();
+          return of(fetchRecommendationsFailure());
+        })
+      );
     })
   );
 };

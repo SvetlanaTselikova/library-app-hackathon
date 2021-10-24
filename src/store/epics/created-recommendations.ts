@@ -16,19 +16,23 @@ export const loadCreatedRecommendations: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchCreatedRecommendationsRequest.match),
     switchMap((action) => {
-      return ajax
-        .get<{ history: IBook[]; recommendations: IBook[] }>(
-          `${BACKEND_URL}/recommendations?book_ids=${action.payload.join(
-            ","
-          )}&model_name=item_similarity`
-        )
-        .pipe(
-          map((value) => fetchCreatedRecommendationsSuccess(value?.response)),
-          catchError(() => {
-            errorNotification();
-            return of(fetchCreatedRecommendationsFailure());
-          })
-        );
+      return ajax({
+        url: `${BACKEND_URL}/recommendations?book_ids=${action.payload.join(
+          ","
+        )}&model_name=item_similarity`,
+        method: "GET",
+        responseType: "text",
+      }).pipe(
+        map((value) => {
+          return fetchCreatedRecommendationsSuccess(
+            JSON.parse((value as any)?.response.replace(/\bNaN\b/g, "null"))
+          );
+        }),
+        catchError(() => {
+          errorNotification();
+          return of(fetchCreatedRecommendationsFailure());
+        })
+      );
     })
   );
 };

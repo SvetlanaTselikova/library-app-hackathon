@@ -24,17 +24,21 @@ export const loadPopular: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchPopularRequest.match),
     switchMap((action) => {
-      return ajax
-        .get<{ month: IBook[]; news: IBook[]; russian: IBook[] }>(
-          `${BACKEND_URL}/popular`
-        )
-        .pipe(
-          map((value) => fetchPopularSuccess(value?.response)),
-          catchError(() => {
-            errorNotification();
-            return of(fetchPopularFailure());
-          })
-        );
+      return ajax({
+        url: `${BACKEND_URL}/popular`,
+        method: "GET",
+        responseType: "text",
+      }).pipe(
+        map((value) => {
+          return fetchPopularSuccess(
+            JSON.parse((value as any)?.response.replace(/\bNaN\b/g, "null"))
+          );
+        }),
+        catchError(() => {
+          errorNotification();
+          return of(fetchPopularFailure());
+        })
+      );
     })
   );
 };

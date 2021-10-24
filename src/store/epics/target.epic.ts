@@ -16,17 +16,21 @@ export const loadTarget: RootEpic = (action$, state$) => {
   return action$.pipe(
     filter(fetchTargetRequest.match),
     switchMap((action) => {
-      return ajax
-        .get<{ target: IBook[] }>(
-          `${BACKEND_URL}/targets?target_ids=${action.payload.join(",")}`
-        )
-        .pipe(
-          map((value) => fetchTargetSuccess(value?.response)),
-          catchError(() => {
-            errorNotification();
-            return of(fetchTargetFailure());
-          })
-        );
+      return ajax({
+        url: `${BACKEND_URL}/targets?target_ids=${action.payload.join(",")}`,
+        method: "GET",
+        responseType: "text",
+      }).pipe(
+        map((value) => {
+          return fetchTargetSuccess(
+            JSON.parse((value as any)?.response.replace(/\bNaN\b/g, "null"))
+          );
+        }),
+        catchError(() => {
+          errorNotification();
+          return of(fetchTargetFailure());
+        })
+      );
     })
   );
 };

@@ -16,17 +16,23 @@ export const loadFilteredBooks: RootEpic = (action$, state$) => {
     filter(fetchFilteredBooksRequest.match),
     switchMap((action) => {
       const { type, genres } = action.payload;
-      return ajax
-        .get<{ books: IBook[] }>(
-          `${BACKEND_URL}/books_filter?type=${type}&rubrics=${genres.join(",")}`
-        )
-        .pipe(
-          map((value) => fetchFilteredBooksSuccess(value?.response)),
-          catchError(() => {
-            errorNotification();
-            return of(fetchFilteredBooksFailure());
-          })
-        );
+      return ajax({
+        url: `${BACKEND_URL}/books_filter?type=${type}&rubrics=${genres.join(
+          ","
+        )}`,
+        method: "GET",
+        responseType: "text",
+      }).pipe(
+        map((value) => {
+          return fetchFilteredBooksSuccess(
+            JSON.parse((value as any)?.response.replace(/\bNaN\b/g, "null"))
+          );
+        }),
+        catchError(() => {
+          errorNotification();
+          return of(fetchFilteredBooksFailure());
+        })
+      );
     })
   );
 };
